@@ -1,9 +1,6 @@
-import React, { useLayoutEffect, useRef, useState, useEffect } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { socialLinks } from '../data/content';
-
-const MARQUEE_TEXT = 'KING KOHLI • RUN MACHINE • LEGEND • ';
-const FOOTER_VIDEO_URL = '/e550f6a72c39cbe13093a3071b44a228_720w.mp4';
 
 function InstagramIcon() {
     return (
@@ -25,15 +22,6 @@ function TwitterIcon() {
     );
 }
 
-function YouTubeIcon() {
-    return (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <rect x="2" y="4" width="20" height="16" rx="4" ry="4" />
-            <polygon points="10,8 16,12 10,16" fill="currentColor" stroke="none" />
-        </svg>
-    );
-}
-
 function FacebookIcon() {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -49,25 +37,7 @@ const iconMap: Record<string, () => React.ReactElement> = {
 };
 
 export default function FooterSection() {
-    const marqueeRef = useRef<HTMLDivElement>(null);
     const sectionRef = useRef<HTMLElement>(null);
-    const [videoSize, setVideoSize] = useState({ w: 0, h: 0 });
-
-    // Measure footer and compute video dimensions so rotated video fills exactly
-    useEffect(() => {
-        const update = () => {
-            if (!sectionRef.current) return;
-            const { offsetWidth: fw, offsetHeight: fh } = sectionRef.current;
-            // After 90° rotation, video width becomes visual height and vice versa
-            // Need: visual width >= fw and visual height >= fh
-            // visual width = video height, visual height = video width
-            // So: video height >= fw, video width >= fh
-            setVideoSize({ w: Math.max(fh, fw), h: Math.max(fw, fh) });
-        };
-        update();
-        window.addEventListener('resize', update);
-        return () => window.removeEventListener('resize', update);
-    }, []);
 
     useLayoutEffect(() => {
         const ctx = gsap.context(() => { }, sectionRef);
