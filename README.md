@@ -1,5 +1,7 @@
 # 🏏 Virat Kohli — King Kohli Portfolio
 
+🔗 **[Live Preview](https://virat-kohli-tont.vercel.app/)**
+
 A cinematic single-page dark portfolio for Virat Kohli built with React, TypeScript, Vite, Tailwind CSS, GSAP, and Framer Motion.
 
 ## ✨ Features
